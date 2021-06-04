@@ -5,15 +5,23 @@ import CampaignMediaFooter from '../components/CampaignMediaFooter';
 import VideoJs from './videoJs';
 
 function MediaCampaign(props) {
-  const { cover_photo_url, download_url, media_type, tracking_link } = props.media;
-  
-  const isSafari = () => { // Detect Safari
-    const agentHas = (brows) =>  navigator.userAgent.indexOf(brows) > -1; 
-    return  (!!window.ApplePaySetupFeature || !!window.safari) && agentHas("Safari") && !agentHas("Chrome") && !agentHas("CriOS")
-  }
+  const { cover_photo_url, download_url, media_type, tracking_link } =
+    props.media;
 
-  // TODO implement streaming server.
-  let videoUrl = isSafari() ? '/stream-safari?url=' + btoa(download_url) : download_url
+  const isSafari = () => {
+    // Detect Safari
+    const agentHas = (brows) => navigator.userAgent.indexOf(brows) > -1;
+    return (
+      (!!window.ApplePaySetupFeature || !!window.safari) &&
+      agentHas('Safari') &&
+      !agentHas('Chrome') &&
+      !agentHas('CriOS')
+    );
+  };
+
+  let videoUrl = isSafari()
+    ? '/stream-safari?url=' + btoa(download_url)
+    : download_url;
   const videoJsOptions = {
     poster: cover_photo_url,
     // autoplay: true,

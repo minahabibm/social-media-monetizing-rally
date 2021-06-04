@@ -17,7 +17,8 @@ const downloadFile = (url) => {
   //     method: 'GET',
   //     responseType: 'blob', // important
   //   })
-  axios.get('/download?url='+ encodedUrl, {responseType: 'blob'} )
+  axios
+    .get('/download?url=' + encodedUrl, { responseType: 'blob' })
     .then((response) => {
       const url = window.URL.createObjectURL(new Blob([response.data]));
       const link = document.createElement('a');
@@ -26,7 +27,6 @@ const downloadFile = (url) => {
       document.body.appendChild(link);
       link.click();
     });
-  
 };
 
 function CampaignMediaFooter(props) {
