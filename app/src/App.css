@@ -1,0 +1,12 @@
+.divMob {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.divCont{
+  height: 650px;
+  width: 350px;
+  overflow: auto;
+}
