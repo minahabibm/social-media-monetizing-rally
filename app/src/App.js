@@ -2,10 +2,16 @@ import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import './App.css';
-import Campaign from './pages/Campaign';
+import DraggableDiv from './components/draggableDiv/DraggableDiv';
+import CampaignView from './components/campaignView/campaignView';
 
 function App() {
   const [data, setData] = useState([]);
+  const [refresh, setRefresh] = useState(false);
+
+  const setRefreshing = () => {
+    setRefresh(true);
+  };
 
   useEffect(() => {
     axios
@@ -15,14 +21,28 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    if (refresh === true) {
+      axios
+        .get('https://www.plugco.in/public/take_home_sample_feed')
+        .then((response) => {
+          setData(response.data);
+          const timeout = setTimeout(() => {
+            setRefresh(false);
+          }, 1000);
+          return () => clearTimeout(timeout);
+        });
+    }
+  }, [refresh]);
+
   return (
     <div className='divMob'>
-      <div className='divCont'>
+      <DraggableDiv refreshContent={setRefreshing} isRefreshing={refresh}>
         {data.campaigns &&
           data.campaigns.map((campaign) => (
-            <Campaign key={campaign.id} campaign={campaign}></Campaign>
+            <CampaignView key={campaign.id} campaign={campaign}></CampaignView>
           ))}
-      </div>
+      </DraggableDiv>
     </div>
   );
 }

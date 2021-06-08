@@ -2,8 +2,8 @@ import React from 'react';
 import axios from 'axios';
 
 import './CampaignMediaFooter.css';
-import { ReactComponent as DownloadLogo } from '../assets/download.svg';
-import { ReactComponent as LinkLogo } from '../assets/link.svg';
+import { ReactComponent as DownloadLogo } from '../../assets/download.svg';
+import { ReactComponent as LinkLogo } from '../../assets/link.svg';
 
 const downloadFile = (url) => {
   var encodedUrl = btoa(url); // base64

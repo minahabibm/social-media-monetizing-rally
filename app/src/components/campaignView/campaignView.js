@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './Campaign.css';
-import CampaignHeader from '../components/CampaignHeader';
-import MediaCampaign from '../components/MediaCampaign';
+import './campaignView.css';
+import CampaignHeader from '../campaginHeader/CampaignHeader';
+import CampaignMedia from '../campaignMedia/campaignMedia';
 
-function Campaign(props) {
+function CampaignView(props) {
   const { campaign_name, campaign_icon_url, medias, pay_per_install } =
     props.campaign;
 
@@ -19,14 +19,14 @@ function Campaign(props) {
       <div className='hs'>
         {medias &&
           medias.map((media) => (
-            <MediaCampaign
+            <CampaignMedia
               key={media.download_url}
               media={media}
-            ></MediaCampaign>
+            ></CampaignMedia>
           ))}
       </div>
     </div>
   );
 }
 
-export default Campaign;
+export default CampaignView;

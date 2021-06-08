@@ -1,10 +1,10 @@
 import React from 'react';
 
-import './MediaCampaign.css';
-import CampaignMediaFooter from '../components/CampaignMediaFooter';
-import VideoJs from './videoJs';
+import './campaignMedia.css';
+import CampaignMediaFooter from '../campaingMediaFooter/CampaignMediaFooter';
+import VideoJs from '../videoJS/videoJs';
 
-function MediaCampaign(props) {
+function CampaignMedia(props) {
   const { cover_photo_url, download_url, media_type, tracking_link } =
     props.media;
 
@@ -19,7 +19,7 @@ function MediaCampaign(props) {
     );
   };
 
-  let videoUrl = isSafari()
+  let videoUrl = isSafari() // '/stream-safari?url=' + btoa(download_url);
     ? '/stream-safari?url=' + btoa(download_url)
     : download_url;
   const videoJsOptions = {
@@ -48,11 +48,9 @@ function MediaCampaign(props) {
       <CampaignMediaFooter
         downloadUrl={download_url}
         trackingLin={tracking_link}
-      >
-        {' '}
-      </CampaignMediaFooter>
+      ></CampaignMediaFooter>
     </div>
   );
 }
 
-export default MediaCampaign;
+export default CampaignMedia;
